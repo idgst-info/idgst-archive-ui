@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17"
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-scripts": "1.0.17",
+    "jquery": "^3.1.1",
+    "materialize-css": "^0.100.2"
   },
   "scripts": {
     "start": "react-scripts start",
