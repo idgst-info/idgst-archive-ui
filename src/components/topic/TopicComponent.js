@@ -5,13 +5,20 @@ import NoRecords from "../NoRecords";
 class TopicComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {topics: []};
+        this.state = {
+            topics: [],
+            digest: {},
+            showDigestHeader: false
+        };
     }
 
     componentDidMount() {
         fetch(`http://localhost:9000/api/v1/digests/` + this.props.digestId)
             .then(result => result.json())
-            .then(response => this.setState({topics: response.topics}))
+            .then(response => this.setState({
+                digest: response,
+                topics: response.topics
+            }))
             .catch(function () {
                 console.error("Error retrieving data from server. Using mocked data");
                 this.setState({topics: []})
@@ -26,6 +33,13 @@ class TopicComponent extends Component {
             rows.push(<TopicRow topic={topic} key={topic.topic + digestID}/>);
         });
 
+        let header = null;
+        if (this.props.showDigestHeader) {
+            header = <h4 className="center-align">{this.state.digest.title}</h4>
+        } else {
+            header = <span/>
+        }
+
         let hasRecords = rows.length > 0;
         let content = null;
 
@@ -36,8 +50,11 @@ class TopicComponent extends Component {
         }
 
         return (
-            <div id={"digest-" + digestID} className="digest-details">
-                {content}
+            <div>
+                {header}
+                <div id={"digest-" + digestID} className="digest-details">
+                    {content}
+                </div>
             </div>
         )
     }

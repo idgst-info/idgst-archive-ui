@@ -12,13 +12,11 @@ class DigestRow extends Component {
     }
 
     handleClick() {
-        console.log(this.state);
-
         let content = null;
         const digest = this.props.digest;
         if (this.state.isShowMore) {
             content = <div id={'digest-' + digest.id}>
-                <TopicComponent topics={digest.topics} digestId={digest._id.$oid}/>
+                <TopicComponent digestTitle={digest.title} digestId={digest._id.$oid} showDigestHeader={false}/>
             </div>
         }
 
@@ -31,8 +29,8 @@ class DigestRow extends Component {
 
     render() {
         const digest = this.props.digest;
-        let digestURL = "#/digest/" + digest._id.$oid;
-        let dataTarget = "#digest-" + digest._id.$oid;
+        let digestURL = "digest/" + digest._id.$oid;
+        let dataTarget = "digest-" + digest._id.$oid;
 
         let formatDate = function (milliseconds) {
             let date = new Date(milliseconds);
