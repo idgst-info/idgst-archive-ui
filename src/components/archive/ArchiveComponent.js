@@ -5,9 +5,24 @@ import DigestsHeader from "./DigestsHeader";
 import DigestRow from "./DigestRow";
 
 class ArchiveComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {digests: []};
+    }
+
+    componentDidMount(){
+        fetch(`http://localhost:9000/api/v1/digests`)
+            .then(result=>result.json())
+            .then(response=>this.setState({digests: response.content}))
+            .catch(function() {
+                console.error("Error retrieving data from server. Using mocked data");
+                this.setState({digests: []})
+            });
+    }
+
     render() {
         let rows = [];
-        this.props.digests.forEach(function (digest) {
+        this.state.digests.forEach(function (digest) {
             rows.push(<DigestRow digest={digest} key={digest._id.$oid}/>);
         });
 
