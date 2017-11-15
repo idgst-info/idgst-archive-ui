@@ -16,7 +16,6 @@ class ArchiveComponent extends Component {
             .then(response=>this.setState({digests: response.content}))
             .catch(function() {
                 console.error("Error retrieving data from server. Using mocked data");
-                this.setState({digests: []})
             });
     }
 
