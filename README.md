@@ -9,7 +9,7 @@ Below you will find some information on how to build and run the application
 - [Table of Contents](#table-of-contents)
 - [About](#about)
 - [How to run into development mode](#how-to-run-into-development-mode)
-    - [How to build for production](#how-to-build-for-production)
+- [How to build for production](#how-to-build-for-production)
 
 <!-- /TOC -->
 
@@ -30,7 +30,7 @@ npm start
 
 After that UI is available on http://localhost:3000
 
-### How to build for production
+## How to build for production
 
 ```bash
 npm run-script build --production
