@@ -1,22 +1,39 @@
 import React, {Component} from "react";
 import NoRecords from "../NoRecords";
-import Pagination from "../Pagination";
+import PaginationComponent from "../pagination/PaginationComponent";
 import DigestsHeader from "./DigestsHeader";
 import DigestRow from "./DigestRow";
 
 class ArchiveComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {digests: []};
+        this.state = {
+            digests: [],
+            response: {},
+            pageNumber: 1
+        };
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
 
     componentDidMount(){
-        fetch(`http://localhost:9000/api/v1/digests`)
+        this.fetchDigests(this.state.pageNumber);
+    }
+
+
+    fetchDigests(pageNumber) {
+        fetch(`http://localhost:9000/api/v1/digests?size=2&pageNumber=` + pageNumber)
             .then(result=>result.json())
-            .then(response=>this.setState({digests: response.content}))
+            .then(response => this.setState({
+                response: response,
+                digests: response.content
+            }))
             .catch(function() {
                 console.error("Error retrieving data from server. Using mocked data");
             });
+    }
+
+    handleUpdate(newPgeNumber, e) {
+        this.fetchDigests(newPgeNumber);
     }
 
     render() {
@@ -26,12 +43,12 @@ class ArchiveComponent extends Component {
         });
 
         let hasRecords = rows.length > 0;
-        let content = null;
+        let collectionComponent = null;
 
         if (hasRecords) {
-            content = <ul className="collection"> {rows} </ul>
+            collectionComponent = <ul className="collection"> {rows} </ul>
         } else {
-            content = <NoRecords/>
+            collectionComponent = <NoRecords/>
         }
 
         return (
@@ -40,9 +57,10 @@ class ArchiveComponent extends Component {
                     <div className="col s12">
                         <DigestsHeader/>
 
-                        {content}
+                        {collectionComponent}
 
-                        <Pagination/>
+                        <PaginationComponent response={this.state.response}
+                                             onPageChange={this.handleUpdate}/>
                     </div>
                 </div>
             </div>
