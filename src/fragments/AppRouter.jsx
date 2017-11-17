@@ -14,7 +14,7 @@ const Digest = ({match}) => (
     <DigestComponent digestId={match.params.digestId}/>
 );
 
-class AppHeader extends Component {
+class AppRouter extends Component {
     render() {
         return (
             <Router>
@@ -36,4 +36,4 @@ class AppHeader extends Component {
     }
 }
 
-export default AppHeader;
+export default AppRouter;

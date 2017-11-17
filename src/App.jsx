@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import "materialize-css/dist/css/materialize.css";
-import AppHeader from "./fragments/AppHeader";
+import AppRouter from "./fragments/AppRouter";
 
 class App extends Component {
 
@@ -9,7 +9,7 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="container">
-                    <AppHeader/>
+                    <AppRouter/>
                 </div>
             </div>
         );
