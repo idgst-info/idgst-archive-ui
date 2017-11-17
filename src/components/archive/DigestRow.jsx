@@ -41,7 +41,7 @@ class DigestRow extends Component {
                 <div className="digest_title"><a href={digestURL}>{digest.title}</a></div>
                 <p className="digest_info">Published date {formatDate(digest.publishedDate)}</p>
 
-                <a href="#" data-target={dataTarget}
+                <a href="javascript:void(0)" data-target={dataTarget}
                    onClick={this.handleClick}> {this.state.isShowMore ? 'Show more' : 'Hide'}</a>
                 {this.state.content}
             </li>
