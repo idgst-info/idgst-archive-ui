@@ -13,7 +13,7 @@ class TopicComponent extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:9000/api/v1/digests/` + this.props.digestId)
+        fetch(`http://idgst.info:9000/api/v1/digests/` + this.props.digestId)
             .then(result => result.json())
             .then(response =>
                 this.setState({
@@ -22,7 +22,7 @@ class TopicComponent extends Component {
                 })
             )
             .catch(function () {
-                console.error("Error retrieving data from server. Using mocked data");
+                console.error("Error retrieving data from server.");
                 this.setState({topics: []});
             });
     }

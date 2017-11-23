@@ -15,20 +15,19 @@ class ArchiveComponent extends Component {
         this.handleUpdate = this.handleUpdate.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.fetchDigests(this.state.pageNumber);
     }
 
-
     fetchDigests(pageNumber) {
-        fetch(`http://localhost:9000/api/v1/digests?size=2&pageNumber=` + pageNumber)
-            .then(result=>result.json())
+        fetch(`http://idgst.info:9000/api/v1/digests?&sortOrder=desc&sortBy=publishedDate&pageNumber=` + pageNumber)
+            .then(result => result.json())
             .then(response => this.setState({
                 response: response,
                 digests: response.content
             }))
-            .catch(function() {
-                console.error("Error retrieving data from server. Using mocked data");
+            .catch(function () {
+                console.error("Error retrieving data from server.");
             });
     }
 
