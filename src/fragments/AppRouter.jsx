@@ -29,7 +29,7 @@ class AppRouter extends Component {
                     <Route exact path="/" component={ArchiveComponent}/>
                     <Route path="/about" component={About}/>
                     <Route path="/digest/:digestId"
-                           render={(props) => <Digest {...props} digestId={"123"}/>}/>
+                           render={(props) => <Digest {...props}/>}/>
                 </div>
             </Router>
         )
