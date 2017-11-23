@@ -32,14 +32,14 @@ class DigestRow extends Component {
         let digestURL = "digest/" + digest._id.$oid;
         let dataTarget = "digest-" + digest._id.$oid;
 
-        let formatDate = function (milliseconds) {
-            let date = new Date(milliseconds);
+        let formatDate = function (publishedDate) {
+            let date = new Date(publishedDate.$date);
             return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
         };
         return (
             <li className="collection-item article-listing">
                 <div className="digest_title"><a href={digestURL}>{digest.title}</a></div>
-                <p className="digest_info">Published date {formatDate(digest.publishedDate)}</p>
+                <p className="digest_info">Published date: {formatDate(digest.publishedDate)}</p>
 
                 <a href="javascript:void(0)" data-target={dataTarget}
                    onClick={this.handleClick}> {this.state.isShowMore ? 'Show more' : 'Hide'}</a>
