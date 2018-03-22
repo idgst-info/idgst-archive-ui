@@ -20,7 +20,7 @@ class ArchiveComponent extends Component {
     }
 
     fetchDigests(pageNumber) {
-        fetch(`http://idgst.info:9000/api/v1/digests?&sortOrder=desc&sortBy=publishedDate&pageNumber=` + pageNumber)
+        fetch(`http://idgst.info/api/v1/digests?&sortOrder=desc&sortBy=publishedDate&pageNumber=` + pageNumber)
             .then(result => result.json())
             .then(response => this.setState({
                 response: response,
