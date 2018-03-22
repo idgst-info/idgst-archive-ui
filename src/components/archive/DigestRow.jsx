@@ -34,7 +34,9 @@ class DigestRow extends Component {
 
         let formatDate = function (publishedDate) {
             let date = new Date(publishedDate.$date);
-            return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+            let month = date.getMonth() + 1;
+
+            return date.getFullYear() + "-" + month + "-" + date.getDate();
         };
         return (
             <li className="collection-item article-listing">
